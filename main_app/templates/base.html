@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>catcollector</title>
+		<link rel="stylesheet" href="{% static 'style.css' %}" />
+	</head>
+	<body>
+		<header>
+			{% if user.is_authenticated %}
+			<span>
+				<a href="{% url 'profile' user.username %}">Hello, {{user.username}}</a>
+			</span>
+			<span>|</span>
+			<span>
+				<a href="{% url 'logout' %}">Logout</a>
+			</span>
+			{% else %}
+			<span>
+				<a href="{% url 'login' %}">Login</a>
+			</span>
+			<span>|</span>
+			<span>
+				<a href="{% url 'signup' %}">Sign Up</a>
+			</span>
+			{% endif %}
+			<a href="{% url 'cats_index' %}">
+				<h1>catcollector</h1>
+			</a>
+		</header>
+		{% block content %} 
+		{% endblock %}
+		<footer>All Rights Reserved, catcollector 2020</footer>
+	</body>
+</html>
